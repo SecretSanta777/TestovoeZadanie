@@ -1,0 +1,52 @@
+# Xcode
+.DS_Store
+*/xcuserdata
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.xcworkspace
+!default.xcworkspace
+DerivedData/
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Swift Package Manager
+/.build
+/Packages
+/*.xcodeproj
+.swiftpm
+
+# CocoaPods
+Pods/
+Podfile.lock
+*.xcworkspace
+!default.xcworkspace
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# AppCode
+.idea/
+
+# OSX
+.DS_Store
+
+# SwiftLint
+.swiftlint.yml
+
+# Local development configs
+*.env
+*.env.*
+
+# Carthage
+Carthage/
