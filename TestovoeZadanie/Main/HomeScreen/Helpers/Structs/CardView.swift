@@ -22,10 +22,10 @@ struct CardView: View {
                     }
                     VStack(alignment: .leading, spacing: 10) {
                         VStack(alignment: .leading,spacing: 5) {
-                            Text(doctor.last_name ?? "")
+                            Text(doctor.lastName ?? "")
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundStyle(.black)
-                            Text(doctor.first_name ?? "")
+                            Text(doctor.firstName ?? "")
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundStyle(.black) + Text(" ") + Text(doctor.patronymic ?? "")
                                 .font(.system(size: 16, weight: .medium))

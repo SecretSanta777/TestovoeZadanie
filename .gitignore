@@ -20,7 +20,6 @@ build/
 # Swift Package Manager
 /.build
 /Packages
-/*.xcodeproj
 .swiftpm
 
 # CocoaPods

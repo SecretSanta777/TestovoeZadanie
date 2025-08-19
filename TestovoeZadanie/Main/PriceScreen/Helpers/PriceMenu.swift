@@ -12,7 +12,7 @@ struct PriceMenu: View {
                         .font(.system(size: 16))
                         .padding(.leading, 10)
                     Spacer()
-                    Text("\(doctor.video_chat_price ?? 0) ₽")
+                    Text("\(doctor.videoChatPrice ?? 0) ₽")
                         .font(.system(size: 16, weight: .bold))
                         .padding(.trailing, 10)
                     
@@ -29,7 +29,7 @@ struct PriceMenu: View {
                         .font(.system(size: 16))
                         .padding(.leading, 10)
                     Spacer()
-                    Text("\(doctor.text_chat_price ?? 0) ₽")
+                    Text("\(doctor.textChatPrice ?? 0) ₽")
                         .font(.system(size: 16, weight: .bold))
                         .padding(.trailing, 10)
                     
@@ -46,7 +46,7 @@ struct PriceMenu: View {
                         .font(.system(size: 16))
                         .padding(.leading, 10)
                     Spacer()
-                    Text("\(doctor.home_price ?? 0) ₽")
+                    Text("\(doctor.homePrice ?? 0) ₽")
                         .font(.system(size: 16, weight: .bold))
                         .padding(.trailing, 10)
                 }

@@ -19,9 +19,9 @@ struct DetailView: View {
                         .clipShape(Circle())
                 }
                 VStack(alignment: .leading) {
-                    Text(dataFromHomeView.last_name ?? "")
+                    Text(dataFromHomeView.lastName ?? "")
                         .font(.system(size: 16, weight: .bold))
-                    Text(dataFromHomeView.first_name ?? "").font(.system(size: 16, weight: .bold)) + Text(" ") + Text(dataFromHomeView.patronymic ?? "").font(.system(size: 16, weight: .bold))
+                    Text(dataFromHomeView.firstName ?? "").font(.system(size: 16, weight: .bold)) + Text(" ") + Text(dataFromHomeView.patronymic ?? "").font(.system(size: 16, weight: .bold))
                 }
             }
             

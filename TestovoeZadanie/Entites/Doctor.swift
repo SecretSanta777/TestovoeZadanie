@@ -9,15 +9,27 @@ struct Users: Decodable, Hashable {
 }
 
 struct Doctor: Decodable, Hashable {
-    var first_name: String?
-    var patronymic: String?
-    var last_name: String?
-    var specialization: [DoctorSpecilization]?
-    var text_chat_price: Int?
-    var video_chat_price: Int?
-    var home_price: Int?
-    var avatar: String?
-    var rank: Int?
+    let firstName: String?
+    let patronymic: String?
+    let lastName: String?
+    let specialization: [DoctorSpecilization]?
+    let textChatPrice: Int?
+    let videoChatPrice: Int?
+    let homePrice: Int?
+    let avatar: String?
+    let rank: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case firstName = "first_name"
+        case patronymic
+        case lastName = "last_name"
+        case specialization
+        case textChatPrice = "text_chat_price"
+        case videoChatPrice = "video_chat_price"
+        case homePrice = "home_price"
+        case avatar
+        case rank
+    }
 }
 
 struct DoctorSpecilization: Decodable, Hashable {

@@ -22,7 +22,7 @@ struct HomeView: View {
         .background(.appGray)
         .onAppear {
             homeViewModel.getDoctors()
-            print(homeViewModel.doctors?.data?.users?.first?.first_name)
+            print(homeViewModel.doctors?.data?.users?.first?.firstName)
         }
     }
 }
