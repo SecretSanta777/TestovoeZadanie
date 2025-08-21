@@ -7,7 +7,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            HeaderView()
+            HeaderView(viewModel: homeViewModel)
             ScrollView {
                 if let doctors = homeViewModel.doctors?.data?.users {
                     ForEach(doctors, id: \.self) { item in
@@ -17,7 +17,7 @@ struct HomeView: View {
                     .padding(.bottom, 15)
                 }
             }
-            .padding(.top, 140)
+            .padding(.top, 150)
         }
         .background(.appGray)
         .onAppear {

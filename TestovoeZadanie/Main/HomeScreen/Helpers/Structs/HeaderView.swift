@@ -1,55 +1,95 @@
 import SwiftUI
 
 struct HeaderView: View {
-    var textBtn: [String] = ["По цене","По стажу","По рейтингу"]
-    @State var category: CategoryBtn = .none
-    
+    @ObservedObject var viewModel: HomeViewModel
     @State var searchText: String = ""
+    
     var body: some View {
         VStack(spacing: 15) {
             Text("Педиатры")
                 .font(.system(size: 20, weight: .medium))
                 .foregroundStyle(.black)
+            
             HStack {
-                Button {
-                    //
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.gray)
-                }
-                .padding(.leading, 10)
-                
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(.gray)
                 TextField("Поиск", text: $searchText)
             }
-            .frame(height: 36)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding(10)
+            .background(Color.white)
+            .cornerRadius(8)
             .padding(.horizontal, 20)
             
-            
             HStack(spacing: 0) {
-                ForEach(CategoryBtn.allCases.dropLast(), id: \.self) { item in
-                    HeaderButtonView(text: item.rawValue, categoryBtn: $category, category: item)
-                    if item != CategoryBtn.allCases.dropLast().last {
-                        Divider()
-                            .frame(height: 30)
+                Button(action: {
+                    withAnimation {
+                        viewModel.sortDoctors(by: .price)
                     }
+                }) {
+                    HStack(spacing: 4) {
+                        Text("По цене")
+                        if viewModel.currentSort == .price {
+                            Image(systemName: viewModel.sortIcon(for: .price))
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                        }
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(viewModel.currentSort == .price ? .white : .gray)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
                 }
+                .background(viewModel.currentSort == .price ? Color.myPink : Color.white)
                 
+                Button(action: {
+                    withAnimation {
+                        viewModel.sortDoctors(by: .experience)
+                    }
+                }) {
+                    HStack(spacing: 4) {
+                        Text("По стажу")
+                        if viewModel.currentSort == .experience {
+                            Image(systemName: viewModel.sortIcon(for: .experience))
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                        }
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(viewModel.currentSort == .experience ? .white : .gray)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                }
+                .background(viewModel.currentSort == .experience ? Color.myPink : Color.white)
+                
+                Button(action: {
+                    withAnimation {
+                        viewModel.sortDoctors(by: .rating)
+                    }
+                }) {
+                    HStack(spacing: 4) {
+                        Text("По рейтингу")
+                        if viewModel.currentSort == .rating {
+                            Image(systemName: viewModel.sortIcon(for: .rating))
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                        }
+                    }
+                    .font(.system(size: 14))
+                    .foregroundColor(viewModel.currentSort == .rating ? .white : .gray)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                }
+                .background(viewModel.currentSort == .rating ? Color.myPink : Color.white)
             }
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .background(Color.white)
+            .cornerRadius(8)
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.gray, lineWidth: 1)
             )
             .padding(.horizontal, 20)
-
-            
         }
-        .frame(maxWidth: .infinity)
-        .background(.appGray)
-        .zIndex(1)
+        .padding(.vertical, 10)
+        .background(Color.appGray)
     }
 }

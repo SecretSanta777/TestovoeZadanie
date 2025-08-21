@@ -18,6 +18,7 @@ struct Doctor: Decodable, Hashable {
     let homePrice: Int?
     let avatar: String?
     let rank: Int?
+    let seniority: Int?
     
     enum CodingKeys: String, CodingKey {
         case firstName = "first_name"
@@ -29,6 +30,7 @@ struct Doctor: Decodable, Hashable {
         case homePrice = "home_price"
         case avatar
         case rank
+        case seniority
     }
 }
 
