@@ -4,10 +4,12 @@ struct HeaderButtonView: View {
     var text: String
     @Binding var categoryBtn: CategoryBtn
     var category: CategoryBtn
+    @State var changeList: Bool = false
     var body: some View {
         Button {
             withAnimation {
                 categoryBtn = category
+                changeList.toggle()
             }
         } label: {
             HStack() {
@@ -15,8 +17,14 @@ struct HeaderButtonView: View {
                     .font(.system(size: 14))
                     .foregroundStyle(categoryBtn == category ? .white : .gray)
                     .fixedSize()
-                if categoryBtn == category {
+                if categoryBtn == category && !changeList {
                     Image(systemName: "arrow.down")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 5, height: 10)
+                        .foregroundStyle(.white)
+                } else if categoryBtn == category && changeList {
+                    Image(systemName: "arrow.up")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 5, height: 10)
