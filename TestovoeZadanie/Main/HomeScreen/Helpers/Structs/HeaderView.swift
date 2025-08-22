@@ -21,9 +21,7 @@ struct HeaderView: View {
             
             HStack(spacing: 0) {
                 Button(action: {
-                    withAnimation {
-                        viewModel.sortDoctors(by: .price)
-                    }
+                    viewModel.sortDoctors(by: .price)
                 }) {
                     HStack(spacing: 4) {
                         Text("По цене")
@@ -41,9 +39,7 @@ struct HeaderView: View {
                 .background(viewModel.currentSort == .price ? Color.myPink : Color.white)
                 
                 Button(action: {
-                    withAnimation {
-                        viewModel.sortDoctors(by: .experience)
-                    }
+                    viewModel.sortDoctors(by: .experience)
                 }) {
                     HStack(spacing: 4) {
                         Text("По стажу")
@@ -61,9 +57,7 @@ struct HeaderView: View {
                 .background(viewModel.currentSort == .experience ? Color.myPink : Color.white)
                 
                 Button(action: {
-                    withAnimation {
-                        viewModel.sortDoctors(by: .rating)
-                    }
+                    viewModel.sortDoctors(by: .rating)
                 }) {
                     HStack(spacing: 4) {
                         Text("По рейтингу")
