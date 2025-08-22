@@ -32,6 +32,20 @@ struct Doctor: Decodable, Hashable {
         case rank
         case seniority
     }
+    
+    var minPrice: Int {
+        let prices = [homePrice, textChatPrice, videoChatPrice]
+            .compactMap { $0 }
+            .filter { $0 > 0 }
+        return prices.min() ?? 0
+    }
+    var formattedMinPrice: String {
+        if minPrice > 0 {
+            return "от \(minPrice) ₽"
+        } else {
+            return "Цена не указана"
+        }
+    }
 }
 
 struct DoctorSpecilization: Decodable, Hashable {

@@ -9,17 +9,22 @@ struct HomeView: View {
         ZStack(alignment: .top) {
             HeaderView(viewModel: homeViewModel)
             ScrollView {
-                if let doctors = homeViewModel.doctors?.data?.users {
-                    ForEach(doctors, id: \.self) { item in
-                        CardView(path: $path, doctor: item)
-                    }
-                    .padding(.horizontal, 15)
-                    .padding(.bottom, 15)
+                
+                ForEach(homeViewModel.filterDoctors, id: \.self) { item in
+                    CardView(path: $path, doctor: item)
+                }
+                .padding(.horizontal, 15)
+                .padding(.bottom, 15)
+                
+                if homeViewModel.filterDoctors.isEmpty && !homeViewModel.searchText.isEmpty {
+                    Text("Докторы не найдены")
+                        .foregroundStyle(.gray)
                 }
             }
             .padding(.top, 150)
         }
         .background(.appGray)
+        .ignoresSafeArea(.keyboard)
         .onAppear {
             homeViewModel.getDoctors()
             print(homeViewModel.doctors?.data?.users?.first?.firstName)

@@ -3,7 +3,8 @@ import Foundation
 class HomeViewModel: ObservableObject {
     var networkManager: NetworkManager = NetworkManager()
     @Published var doctors: DataUsers?
-    @Published var originalDoctors: DataUsers?
+    //@Published var originalDoctors: DataUsers?
+    @Published var searchText: String = ""
     
     @Published var currentSort: SortType = .none
     @Published var isAscending: Bool = false
@@ -15,11 +16,25 @@ class HomeViewModel: ObservableObject {
     func getDoctors() {
         let loadedDoctors = networkManager.loadJSONFromBundle("test", as: DataUsers.self)
         self.doctors = loadedDoctors
-        self.originalDoctors = loadedDoctors
+        //self.originalDoctors = loadedDoctors
+    }
+    
+    var filterDoctors: [Doctor] {
+        guard let allDoctors = doctors?.data?.users else { return [] }
+        if searchText.isEmpty {
+            return allDoctors
+        } else {
+            return allDoctors.filter { doctor in
+                let fullName = "\(doctor.firstName ?? "") \(doctor.lastName ?? "") \(doctor.patronymic ?? "")"
+                                    .lowercased()
+                                    .trimmingCharacters(in: .whitespaces)
+                return fullName.contains(searchText.lowercased())
+            }
+        }
     }
     
     func sortDoctors(by type: SortType) {
-        guard var users = doctors?.data?.users else { return }
+        var users = filterDoctors
         
         if currentSort == type {
             isAscending.toggle()
@@ -51,9 +66,10 @@ class HomeViewModel: ObservableObject {
             }
             
         case .none:
-            if let originalUsers = originalDoctors?.data?.users {
-                users = originalUsers
-            }
+            print("123")
+//            if let originalUsers = originalDoctors?.data?.users {
+//                users = originalUsers
+//            }
         }
         
         doctors?.data?.users = users

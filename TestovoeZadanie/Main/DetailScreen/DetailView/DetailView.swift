@@ -36,7 +36,7 @@ struct DetailView: View {
                 Text("Стоимость услуг")
                     .padding(.leading, 10)
                 Spacer()
-                Text("От 600 р")
+                Text(dataFromHomeView.formattedMinPrice)
                     .padding(.trailing, 15)
             }
             .font(.system(size: 16, weight: .bold))
@@ -47,6 +47,7 @@ struct DetailView: View {
             
             Text("Проводит диагностику и лечение терапевтических больных. Осуществляет расшифровку и снятие ЭКГ. Дает рекомендации по диетологии. Доктор имеет опыт работы в России и зарубежом. Проводит консультации пациентов на английском языке.")
                 .font(.system(size: 14))
+                .lineSpacing(6)
             
             Spacer()
             

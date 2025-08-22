@@ -2,7 +2,6 @@ import SwiftUI
 
 struct HeaderView: View {
     @ObservedObject var viewModel: HomeViewModel
-    @State var searchText: String = ""
     
     var body: some View {
         VStack(spacing: 15) {
@@ -13,7 +12,7 @@ struct HeaderView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundStyle(.gray)
-                TextField("Поиск", text: $searchText)
+                TextField("Поиск", text: $viewModel.searchText)
             }
             .padding(10)
             .background(Color.white)
